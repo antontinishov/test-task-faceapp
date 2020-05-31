@@ -10,7 +10,7 @@ def save_pics(dir_path: str):
     url = "http://shibe.online/api/shibes?count=100&urls=true&httpsUrls=true"
     api_answer = requests.get(url).json()
     for image_url in api_answer:
-        content_length = int(requests.get(image_url).headers["Content-Length"])
+        content_length = int(requests.head(image_url).headers["Content-Length"])
         images_list.append(
             {
                 "url": image_url,
